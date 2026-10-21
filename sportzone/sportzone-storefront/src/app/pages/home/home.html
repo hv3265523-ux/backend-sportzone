@@ -1,3 +1,10 @@
+<!-- Thông báo thêm giỏ hàng -->
+@if (message()) {
+  <div class="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-lg bg-blue-900 px-5 py-3 text-sm font-bold text-white shadow-lg">
+    {{ message() }}
+  </div>
+}
+
 <!-- 1. BANNER + DEAL TỐC ĐỘ -->
 <section class="mx-auto grid max-w-6xl gap-5 px-4 py-6 lg:grid-cols-[1fr_290px]">
   <div
@@ -8,7 +15,7 @@
     <div class="mb-auto flex flex-wrap gap-2">
       <span class="rounded-full bg-amber-800 px-3 py-1 text-xs font-bold">⚡ SUMMER DROP 2025</span>
       <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800">
-        Công Nghệ Đệm Khí ZoomX & Sợi Thoát Ẩm Dri-FIT
+        Công Nghệ Đệm Khí ZoomX &amp; Sợi Thoát Ẩm Dri-FIT
       </span>
     </div>
 
@@ -21,8 +28,12 @@
       Giảm đến <b>50% TOÀN BỘ</b> giày chạy bộ carbon, áo đấu câu lạc bộ bản Player và phụ kiện tập luyện chuyên sâu.
     </p>
     <div class="mt-5 flex flex-wrap gap-3">
-      <button class="rounded-lg bg-amber-800 px-6 py-3 text-sm font-bold hover:bg-amber-900">Mua Ngay - Nhận Ưu Đãi →</button>
-      <button class="rounded-lg bg-indigo-50 px-6 py-3 text-sm font-bold text-blue-900 hover:bg-white">Khám Phá BST Mới ⊙</button>
+      <a [routerLink]="['/san-pham', 1]" class="rounded-lg bg-amber-800 px-6 py-3 text-sm font-bold hover:bg-amber-900">
+        Mua Ngay - Nhận Ưu Đãi →
+      </a>
+      <a [routerLink]="['/san-pham', 3]" class="rounded-lg bg-indigo-50 px-6 py-3 text-sm font-bold text-blue-900 hover:bg-white">
+        Khám Phá BST Mới ⊙
+      </a>
     </div>
   </div>
 
@@ -32,34 +43,36 @@
     <p class="text-xs text-gray-500">Số lượng có hạn, làm mới kho hàng sau khi đồng hồ về 00:00:00</p>
 
     <div class="mt-4 flex items-center justify-between rounded-xl bg-indigo-50 p-3 text-center">
-      <div><p class="rounded-lg bg-white px-3 py-2 text-2xl font-extrabold">04</p><p class="mt-1 text-[10px] text-gray-500">GIỜ</p></div>
+      <div><p class="rounded-lg bg-white px-3 py-2 text-2xl font-extrabold">{{ hh() }}</p><p class="mt-1 text-[10px] text-gray-500">GIỜ</p></div>
       <span class="font-bold">:</span>
-      <div><p class="rounded-lg bg-white px-3 py-2 text-2xl font-extrabold">38</p><p class="mt-1 text-[10px] text-gray-500">PHÚT</p></div>
+      <div><p class="rounded-lg bg-white px-3 py-2 text-2xl font-extrabold">{{ mm() }}</p><p class="mt-1 text-[10px] text-gray-500">PHÚT</p></div>
       <span class="font-bold">:</span>
-      <div><p class="rounded-lg bg-white px-3 py-2 text-2xl font-extrabold text-amber-800">20</p><p class="mt-1 text-[10px] text-gray-500">GIÂY</p></div>
+      <div><p class="rounded-lg bg-white px-3 py-2 text-2xl font-extrabold text-amber-800">{{ ss() }}</p><p class="mt-1 text-[10px] text-gray-500">GIÂY</p></div>
     </div>
 
-    <div class="mt-3 flex gap-3 rounded-xl bg-indigo-50 p-3">
+    <a [routerLink]="['/san-pham', hotDeal.id]" class="mt-3 flex gap-3 rounded-xl bg-indigo-50 p-3 hover:bg-indigo-100">
       <div class="relative h-14 w-14 shrink-0 rounded-lg bg-lime-200">
-        <span class="absolute -left-1 -top-1 rounded bg-amber-800 px-1 text-[10px] font-bold text-white">-45%</span>
+        <img [src]="hotDeal.images[0]" [alt]="hotDeal.name" class="h-full w-full rounded-lg object-cover" />
+        <span class="absolute -left-1 -top-1 rounded bg-amber-800 px-1 text-[10px] font-bold text-white">-{{ hotDeal.discount }}%</span>
       </div>
       <div class="min-w-0">
         <p class="text-[10px] font-bold text-blue-700">HOT DEAL TOP 1</p>
-        <p class="text-sm font-bold">Nike Alphafly 3 Carbon Road</p>
-        <p class="text-base font-extrabold text-amber-800">4.290.000đ
-          <span class="text-[11px] font-normal text-gray-400 line-through">7.800.000đ</span>
+        <p class="text-sm font-bold">{{ hotDeal.name }}</p>
+        <p class="text-base font-extrabold text-amber-800">
+          {{ fmt(hotDeal.price) }}đ
+          <span class="text-[11px] font-normal text-gray-400 line-through">{{ fmt(hotDeal.oldPrice) }}đ</span>
         </p>
       </div>
-    </div>
+    </a>
     <div class="mt-2 h-1.5 rounded-full bg-blue-100"><div class="h-1.5 w-[82%] rounded-full bg-blue-800"></div></div>
     <div class="mt-1 flex justify-between text-[11px]">
       <span class="text-gray-500">Đã bán: 82/100 đôi</span>
       <span class="font-bold text-amber-800">Chỉ còn 18</span>
     </div>
 
-    <button class="mt-4 w-full rounded-lg bg-blue-900 py-2.5 text-sm font-bold text-white hover:bg-blue-800">
+    <a href="#flash-sale" class="mt-4 block w-full rounded-lg bg-blue-900 py-2.5 text-center text-sm font-bold text-white hover:bg-blue-800">
       Xem Tất Cả 120+ Deal Chớp Nhoáng
-    </button>
+    </a>
   </div>
 </section>
 
@@ -110,29 +123,31 @@
 </section>
 
 <!-- 5. FLASH SALE -->
-<section class="mx-auto max-w-6xl px-4 py-10">
+<section id="flash-sale" class="mx-auto max-w-6xl px-4 py-10">
   <div class="rounded-2xl bg-orange-50 p-5">
     <div class="flex flex-wrap items-center justify-between gap-2">
       <h2 class="text-2xl font-extrabold text-blue-900">⚡ FLASH SALE CHỚP NHOÁNG</h2>
-      <span class="rounded-full bg-white px-4 py-1 text-sm font-bold text-orange-600">Kết thúc sau 04:38:20</span>
+      <span class="rounded-full bg-white px-4 py-1 text-sm font-bold text-orange-600">
+        Kết thúc sau {{ hh() }}:{{ mm() }}:{{ ss() }}
+      </span>
     </div>
     <div class="mt-5 grid grid-cols-2 gap-4 lg:grid-cols-4">
-      @for (p of flashSale; track p.name) {
+      @for (p of flashSale; track p.id) {
         <div class="rounded-xl bg-white p-3 shadow-sm">
-          <div class="relative h-40 rounded-lg bg-gray-100">
-            <img [src]="p.img" [alt]="p.name" class="h-full w-full rounded-lg object-cover" />
-            <span class="absolute left-2 top-2 rounded bg-red-600 px-2 py-0.5 text-xs font-bold text-white">{{ p.discount }}</span>
-          </div>
+          <a [routerLink]="['/san-pham', p.id]" class="relative block h-40 rounded-lg bg-gray-100">
+            <img [src]="p.images[0]" [alt]="p.name" class="h-full w-full rounded-lg object-cover" />
+            <span class="absolute left-2 top-2 rounded bg-red-600 px-2 py-0.5 text-xs font-bold text-white">-{{ p.discount }}%</span>
+          </a>
           <p class="mt-2 text-xs font-bold text-gray-400">{{ p.brand }}</p>
-          <p class="line-clamp-2 h-10 text-sm font-medium">{{ p.name }}</p>
-          <p class="text-lg font-extrabold text-red-600">{{ p.price }}</p>
-          <p class="text-xs text-gray-400 line-through">{{ p.oldPrice }}</p>
-          <div class="mt-2 flex gap-1">
+          <a [routerLink]="['/san-pham', p.id]" class="line-clamp-2 block h-10 text-sm font-medium hover:text-blue-900">{{ p.name }}</a>
+          <p class="text-lg font-extrabold text-red-600">{{ fmt(p.price) }}đ</p>
+          <p class="text-xs text-gray-400 line-through">{{ fmt(p.oldPrice) }}đ</p>
+          <div class="mt-2 flex flex-wrap gap-1">
             @for (sz of p.sizes; track sz) {
               <span class="rounded border px-2 py-0.5 text-xs">{{ sz }}</span>
             }
           </div>
-          <button class="mt-3 w-full rounded-lg bg-blue-900 py-2 text-sm font-bold text-white hover:bg-blue-800">
+          <button (click)="addToCart(p)" class="mt-3 w-full rounded-lg bg-blue-900 py-2 text-sm font-bold text-white hover:bg-blue-800">
             Thêm vào giỏ hàng
           </button>
         </div>
@@ -144,7 +159,7 @@
 <!-- 6. SẢN PHẨM NỔI BẬT & BÁN CHẠY -->
 <section class="mx-auto max-w-6xl px-4 pb-10">
   <div class="flex flex-wrap items-center justify-between gap-3">
-    <h2 class="text-2xl font-extrabold text-blue-900">Sản Phẩm Nổi Bật & Bán Chạy</h2>
+    <h2 class="text-2xl font-extrabold text-blue-900">Sản Phẩm Nổi Bật &amp; Bán Chạy</h2>
     <div class="flex flex-wrap gap-2">
       @for (t of tabs; track t) {
         <button
@@ -158,16 +173,16 @@
     </div>
   </div>
   <div class="mt-5 grid grid-cols-2 gap-4 lg:grid-cols-4">
-    @for (p of featured; track p.name) {
+    @for (p of featured; track p.id) {
       <div class="rounded-xl border bg-white p-3">
-        <div class="relative h-44 rounded-lg {{ p.bg }}">
-          <img [src]="p.img" [alt]="p.name" class="h-full w-full rounded-lg object-cover" />
+        <a [routerLink]="['/san-pham', p.id]" class="relative block h-44 rounded-lg bg-gray-100">
+          <img [src]="p.images[0]" [alt]="p.name" class="h-full w-full rounded-lg object-cover" />
           <span class="absolute left-2 top-2 rounded bg-blue-900 px-2 py-0.5 text-xs font-bold text-white">{{ p.tag }}</span>
-        </div>
+        </a>
         <p class="mt-2 text-xs font-bold text-gray-400">{{ p.brand }}</p>
-        <p class="line-clamp-2 h-10 text-sm font-medium">{{ p.name }}</p>
-        <p class="text-lg font-extrabold text-blue-900">{{ p.price }}</p>
-        <button class="mt-2 w-full rounded-lg bg-blue-900 py-2 text-sm font-bold text-white hover:bg-blue-800">
+        <a [routerLink]="['/san-pham', p.id]" class="line-clamp-2 block h-10 text-sm font-medium hover:text-blue-900">{{ p.name }}</a>
+        <p class="text-lg font-extrabold text-blue-900">{{ fmt(p.price) }}đ</p>
+        <button (click)="addToCart(p)" class="mt-2 w-full rounded-lg bg-blue-900 py-2 text-sm font-bold text-white hover:bg-blue-800">
           Thêm vào giỏ hàng
         </button>
       </div>
@@ -182,15 +197,15 @@
   <div class="mt-6 grid gap-4 lg:grid-cols-2">
     <div class="rounded-2xl bg-gradient-to-br from-blue-950 to-blue-700 p-8 text-white">
       <span class="rounded-full bg-white/20 px-3 py-1 text-xs font-bold">DỊCH VỤ ĐỘC QUYỀN</span>
-      <h3 class="mt-4 text-3xl font-extrabold">Dịch Vụ In Tên & Số Áo Chuẩn Châu Âu</h3>
+      <h3 class="mt-4 text-3xl font-extrabold">Dịch Vụ In Tên &amp; Số Áo Chuẩn Châu Âu</h3>
       <ul class="mt-4 space-y-2 text-sm text-blue-100">
         @for (c of checks; track c) {
           <li>✔ {{ c }}</li>
         }
       </ul>
-      <button class="mt-6 rounded-lg bg-amber-800 px-6 py-3 font-bold hover:bg-amber-900">
-        Tự Thiết Kế & In Áo Ngay
-      </button>
+      <a [routerLink]="['/san-pham', 1]" class="mt-6 inline-block rounded-lg bg-amber-800 px-6 py-3 font-bold hover:bg-amber-900">
+        Tự Thiết Kế &amp; In Áo Ngay
+      </a>
     </div>
 
     <div class="rounded-2xl border bg-indigo-50 p-8">
@@ -243,7 +258,7 @@
   </div>
 
   <div class="mt-8 flex flex-wrap items-center justify-between gap-2 text-[10px] font-bold uppercase tracking-wider">
-    <span class="text-slate-500">Theo dõi @sportzone.vn trên Instagram & TikTok</span>
+    <span class="text-slate-500">Theo dõi @sportzone.vn trên Instagram &amp; TikTok</span>
     <span class="normal-case text-blue-700">Tag #SportZoneVN để được vinh danh</span>
   </div>
 

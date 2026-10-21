@@ -1,0 +1,264 @@
+<div class="bg-[#f3f6fb] py-4">
+  <div class="max-w-6xl mx-auto px-4">
+    <!-- Đường dẫn -->
+    <p class="text-xs text-gray-500 mb-3">
+      <a routerLink="/" class="hover:underline text-[#0b3b8c]">Trang chủ</a> &gt; {{ product.cat }} &gt;
+      {{ product.brand }} &gt; {{ product.name }}
+    </p>
+
+    <!-- ===== KHỐI TRÊN ===== -->
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <!-- Cột trái: ảnh -->
+      <div class="md:col-span-3 bg-white rounded-xl p-3 shadow-sm">
+        <div class="relative">
+          <img
+            [src]="mainImage"
+            (error)="onImgError($event)"
+            class="w-full h-96 object-cover rounded-lg bg-gray-100"
+          />
+          <span class="absolute top-2 left-2 bg-[#0b3b8c] text-white text-[10px] font-bold px-2 py-1 rounded">
+            {{ product.badge }}
+          </span>
+          <span class="absolute top-9 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
+            -{{ product.discount }}%
+          </span>
+          <button
+            (click)="liked = !liked"
+            class="absolute top-2 right-2 bg-white rounded-full w-9 h-9 shadow flex items-center justify-center text-red-500"
+          >
+            <span class="material-icons">{{ liked ? 'favorite' : 'favorite_border' }}</span>
+          </button>
+        </div>
+
+        <div class="flex gap-2 mt-3">
+          @for (img of product.images; track img) {
+            <img
+              [src]="img"
+              (error)="onImgError($event)"
+              (click)="mainImage = img"
+              class="w-20 h-16 object-cover rounded border-2 cursor-pointer bg-gray-100"
+              [class]="mainImage === img ? 'border-[#0b3b8c]' : 'border-transparent'"
+            />
+          }
+        </div>
+
+        <p class="text-xs text-gray-500 mt-3 flex items-center gap-1">
+          <span class="material-icons text-green-600" style="font-size: 16px">verified</span>
+          Cam kết hàng chính hãng 100% • Đổi trả trong 30 ngày
+        </p>
+
+        <!-- Giao hàng dự kiến -->
+        <div class="border rounded-lg p-3 mt-3 text-sm flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-icons text-[#0b3b8c]">local_shipping</span>
+            <div>
+              <p class="font-semibold text-[#0b3b8c]">Thời gian giao hàng dự kiến</p>
+              <p class="text-gray-500 text-xs">Giao nhanh 2-4 ngày toàn quốc</p>
+            </div>
+          </div>
+          <span class="text-xs bg-blue-50 text-[#0b3b8c] px-3 py-1 rounded">Hà Nội - Quận Cầu Giấy</span>
+        </div>
+      </div>
+
+      <!-- Cột phải: thông tin -->
+      <div class="md:col-span-2 bg-white rounded-xl p-4 shadow-sm">
+        <span class="text-[11px] font-bold text-[#0b3b8c] bg-blue-50 px-2 py-1 rounded">
+          {{ product.brand }}
+        </span>
+        <h1 class="text-lg font-extrabold text-[#0b2a66] mt-2 leading-snug">{{ product.name }}</h1>
+        <p class="text-sm text-gray-600 my-2 flex items-center gap-1">
+          <span class="material-icons text-yellow-500" style="font-size: 18px">star</span>
+          {{ product.rating }} | {{ fmt(product.sold) }} đã bán
+        </p>
+
+        <div class="bg-blue-50 rounded-lg p-3 my-3">
+          <div class="flex items-center gap-3">
+            <p class="text-3xl text-red-600 font-extrabold">{{ fmt(product.price) }}đ</p>
+            <p class="text-gray-400 line-through text-sm">{{ fmt(product.oldPrice) }}đ</p>
+            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded">-{{ product.discount }}%</span>
+          </div>
+        </div>
+
+        <!-- Màu -->
+        <p class="font-semibold text-sm">Màu sắc:</p>
+        <div class="flex gap-2 my-2 flex-wrap">
+          @for (c of product.colors; track c) {
+            <button
+              (click)="selectedColor = c"
+              class="border-2 px-3 py-2 rounded text-sm"
+              [class]="selectedColor === c ? 'border-[#0b3b8c] text-[#0b3b8c]' : 'border-gray-200'"
+            >
+              {{ c }}
+            </button>
+          }
+        </div>
+
+        <!-- Size -->
+        <p class="font-semibold text-sm mt-3">Kích cỡ:</p>
+        <div class="flex gap-2 my-2 flex-wrap">
+          @for (s of product.sizes; track s) {
+            <button
+              (click)="selectedSize = s; message = ''"
+              class="border-2 w-12 h-10 rounded text-sm font-semibold"
+              [class]="selectedSize === s ? 'bg-[#0b3b8c] text-white border-[#0b3b8c]' : 'border-gray-200'"
+            >
+              {{ s }}
+            </button>
+          }
+        </div>
+        <p class="text-xs text-gray-500">Chưa chắc size? Xem bảng quy đổi size.</p>
+
+        <!-- Voucher -->
+        <label class="flex items-center gap-2 border rounded-lg p-3 my-3 text-sm cursor-pointer">
+          <input type="checkbox" [checked]="useVoucher" (change)="useVoucher = !useVoucher" />
+          <span class="material-icons text-orange-500" style="font-size: 20px">confirmation_number</span>
+          <span>{{ product.voucher }}</span>
+        </label>
+
+        <!-- Số lượng -->
+        <div class="flex items-center gap-3 my-3">
+          <span class="font-semibold text-sm">Số lượng:</span>
+          <button (click)="decrease()" class="border w-9 h-9 rounded">-</button>
+          <span class="w-8 text-center">{{ quantity }}</span>
+          <button (click)="increase()" class="border w-9 h-9 rounded">+</button>
+        </div>
+
+        @if (message) {
+          <p class="text-sm text-red-600 my-2">{{ message }}</p>
+        }
+
+        <div class="flex gap-3 mt-3">
+          <button
+            (click)="addToCart()"
+            class="flex-1 border-2 border-[#0b3b8c] text-[#0b3b8c] font-bold py-3 rounded-lg flex items-center justify-center gap-1"
+          >
+            <span class="material-icons" style="font-size: 20px">add_shopping_cart</span>
+            THÊM VÀO GIỎ
+          </button>
+          <button (click)="buyNow()" class="flex-1 bg-[#0b3b8c] text-white font-bold py-3 rounded-lg">
+            MUA NGAY
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB ===== -->
+    <div class="flex gap-2 mt-6">
+      <button
+        (click)="activeTab = 'mota'"
+        class="px-4 py-2 rounded-lg text-sm font-semibold"
+        [class]="activeTab === 'mota' ? 'bg-[#0b3b8c] text-white' : 'bg-white'"
+      >
+        Mô Tả Sản Phẩm
+      </button>
+      <button
+        (click)="activeTab = 'thongso'"
+        class="px-4 py-2 rounded-lg text-sm font-semibold"
+        [class]="activeTab === 'thongso' ? 'bg-[#0b3b8c] text-white' : 'bg-white'"
+      >
+        Thông Số Kỹ Thuật
+      </button>
+      <button
+        (click)="activeTab = 'danhgia'"
+        class="px-4 py-2 rounded-lg text-sm font-semibold"
+        [class]="activeTab === 'danhgia' ? 'bg-[#0b3b8c] text-white' : 'bg-white'"
+      >
+        Đánh Giá &amp; Nhận Xét
+      </button>
+    </div>
+
+    <div class="bg-white rounded-xl p-5 mt-3 shadow-sm">
+      @if (activeTab === 'mota') {
+        <p class="text-xs font-bold text-[#0b3b8c]">ĐẲNG CẤP KỸ THUẬT VƯỢT TRỘI</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-2">
+          <div>
+            <h2 class="text-2xl font-extrabold text-[#0b2a66]">{{ product.techTitle }}</h2>
+            <p class="text-sm text-gray-600 mt-3">{{ product.techText }}</p>
+            <div class="border rounded-lg p-3 mt-4 text-sm flex items-center justify-between">
+              <span class="flex items-center gap-2">
+                <span class="material-icons text-[#0b3b8c]">local_shipping</span>
+                Thời gian giao hàng dự kiến: 2-4 ngày
+              </span>
+              <span class="text-xs bg-blue-50 text-[#0b3b8c] px-3 py-1 rounded">Hà Nội - Quận Cầu Giấy</span>
+            </div>
+          </div>
+          <img
+            [src]="product.images[1]"
+            (error)="onImgError($event)"
+            class="w-full h-60 object-cover rounded-lg bg-gray-100"
+          />
+        </div>
+      }
+
+      @if (activeTab === 'thongso') {
+        <ul class="list-disc pl-5 text-sm space-y-1">
+          @for (s of product.specs; track s) {
+            <li>{{ s }}</li>
+          }
+        </ul>
+      }
+
+      @if (activeTab === 'danhgia') {
+        @for (r of product.reviews; track r.name) {
+          <div class="border-b py-3">
+            <p class="font-semibold text-sm flex items-center gap-1">
+              {{ r.name }}
+              @for (s of stars(r.stars); track $index) {
+                <span class="material-icons text-yellow-500" style="font-size: 16px">star</span>
+              }
+            </p>
+            <p class="text-sm text-gray-600">{{ r.text }}</p>
+          </div>
+        }
+      }
+    </div>
+
+    <!-- ===== GIẶT & BẢO QUẢN ===== -->
+    <div class="bg-white rounded-xl p-5 mt-4 shadow-sm">
+      <h2 class="font-bold text-[#0b2a66] mb-3">Hướng Dẫn Giặt &amp; Bảo Quản Chuẩn</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        @for (c of product.care; track c.title) {
+          <div class="border rounded-lg p-3 bg-blue-50/40">
+            <p class="font-semibold text-sm text-[#0b3b8c] flex items-center gap-1">
+              <span class="material-icons" style="font-size: 18px">{{ c.icon }}</span>
+              {{ c.title }}
+            </p>
+            <p class="text-xs text-gray-600 mt-1">{{ c.text }}</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- ===== GỢI Ý ===== -->
+    <div class="bg-white rounded-xl p-5 mt-4 shadow-sm">
+      <div class="flex items-end justify-between mb-3">
+        <div>
+          <p class="text-xs font-bold text-[#0b3b8c]">COMPLETE YOUR KIT - ĐỦ BỘ KIT, ĐỦ ĐAM MÊ</p>
+          <h2 class="text-xl font-extrabold text-[#0b2a66]">Gợi Ý Phối Đồ Trọn Bộ &amp; Sản Phẩm Cùng Bộ Sưu Tập</h2>
+        </div>
+        <a routerLink="/" class="text-sm text-[#0b3b8c] cursor-pointer hover:underline">Xem thêm sản phẩm &gt;</a>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        @for (p of related; track p.id) {
+          <div class="border rounded-lg p-3">
+            <span class="text-[10px] font-bold bg-[#0b3b8c] text-white px-2 py-1 rounded">{{ p.tag }}</span>
+            <a [routerLink]="['/san-pham', p.id]">
+              <img
+                [src]="p.images[0]"
+                (error)="onImgError($event)"
+                class="w-full h-32 object-cover rounded my-2 bg-gray-100"
+              />
+            </a>
+            <p class="text-[11px] text-gray-400">{{ p.type }}</p>
+            <a [routerLink]="['/san-pham', p.id]" class="block font-semibold text-sm leading-snug hover:text-[#0b3b8c]">{{ p.name }}</a>
+            <div class="flex items-center justify-between mt-2">
+              <p class="text-red-600 font-bold">{{ fmt(p.price) }}đ</p>
+              <button (click)="addRelated(p)" class="text-xs bg-[#0b3b8c] text-white px-3 py-1 rounded">Thêm</button>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
