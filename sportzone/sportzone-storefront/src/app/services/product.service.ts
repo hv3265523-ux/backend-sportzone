@@ -266,9 +266,9 @@ const PRODUCTS: Product[] = [
     discount: 20,
     images: imgs([
       'https://www.footballshirtculture.com/images/stories/manchester-united-2021-2022-home-kit/manchester_united_2021_2022_home_kit_j.jpeg', // ẢNH 1
-       'https://www.footballshirtculture.com/images/stories/manchester-united-2021-2022-home-kit/manchester_united_2021_2022_home_kit_j.jpeg', // ẢNH 2
-      // 'DÁN LINK ẢNH 3 VÀO ĐÂY', // ẢNH 3
-      // 'DÁN LINK ẢNH 4 VÀO ĐÂY', // ẢNH 4
+       'https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/7808d953c4374566ac432d83251b4494_9366/Bo_2_DJoi_Tat_Manchester_United_trang_JV5890_41_detail.jpg', // ẢNH 2
+       'https://cdn.hstatic.net/products/200000025394/joi_tat_san_nha_manchester_united_mua_giai_25-26_djen_ji7436_41_detail_1644bbdcb97e44a1a7ad6eb44b680f7c_grande.jpg', // ẢNH 3
+      'https://img01.ztat.net/article/spp-media-p1/de25e5d9aa724c818d0a05493e48cbeb/2342cbb4854c413bb95e2a00a39b6bdb.jpg?imwidth=762&filter=packshot', // ẢNH 4
     ]),
     colors: ['Đen'],
     sizes: ['M', 'L'],
@@ -297,10 +297,10 @@ const PRODUCTS: Product[] = [
     oldPrice: 1560000,
     discount: 20,
     images: imgs([
-      'https://tse1.mm.bing.net/th/id/OIP.TYUNKudm480i1zn5yo4mFwHaFe?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', // ẢNH 1
-      // 'DÁN LINK ẢNH 2 VÀO ĐÂY', // ẢNH 2
-      // 'DÁN LINK ẢNH 3 VÀO ĐÂY', // ẢNH 3
-      // 'DÁN LINK ẢNH 4 VÀO ĐÂY', // ẢNH 4
+      'https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,w=700,h=700,f=webp/pub/media/catalog/product//4/0/4069996986756-1_ra7ocghvvaqrv0sh.jpg', // ẢNH 1
+       'https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,w=700,h=700,f=webp/pub/media/catalog/product//4/0/4069996986756-2_weu1iybnk3xxijgz.jpg', // ẢNH 2
+       'https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,w=700,h=700,f=webp/pub/media/catalog/product//4/0/4069996986756-3_4dxdshgbalvy3nnm.jpg', // ẢNH 3
+       'https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,w=700,h=700,f=webp/pub/media/catalog/product//4/0/4069996986756-4_gaftcjb34dnkqybi.jpg', // ẢNH 4
     ]),
     colors: ['Đen Đỏ'],
     sizes: SIZES_SHIRT,
@@ -322,19 +322,19 @@ const PRODUCTS: Product[] = [
     tag: 'MỚI',
     badge: 'FG/AG SPEED',
     brand: 'NIKE',
-    name: 'Giày Đá Bóng Nike Mercurial',
+    name: 'Nike Air Zoom Mercurial Vapor 16 Academy MG Attack',
     rating: 4.8,
     sold: 410,
     price: 2490000,
     oldPrice: 3200000,
     discount: 22,
     images: imgs([
-      'https://tse4.mm.bing.net/th/id/OIP.FDC4jSOr9hNTcxJa3ibCeQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', // ẢNH 1
-      // 'DÁN LINK ẢNH 2 VÀO ĐÂY', // ẢNH 2
-      // 'DÁN LINK ẢNH 3 VÀO ĐÂY', // ẢNH 3
-      // 'DÁN LINK ẢNH 4 VÀO ĐÂY', // ẢNH 4
+      'https://cdn.hstatic.net/products/1000061481/avatar__1_of_1__b6637e0da237454a960f68571978ee1e_1024x1024.jpg', // ẢNH 1
+       'https://cdn.hstatic.net/products/1000061481/dsc06268_87d2781f762548b4983e04944453ecff_1024x1024.jpg', // ẢNH 2
+       'https://cdn.hstatic.net/products/1000061481/dsc06269_8eeb98c880f14e8b882a478976999619_1024x1024.jpg', // ẢNH 3
+       'https://cdn.hstatic.net/products/1000061481/dsc06275_dbb19e43727d445589235c89c55878ca_1024x1024.jpg', // ẢNH 4
     ]),
-    colors: ['Cam Neon'],
+    colors: ['Xanh'],
     sizes: SIZES_SHOE,
     voucher: VOUCHER,
     techTitle: 'Tốc Độ Tối Đa Với Upper Mỏng Nhẹ',

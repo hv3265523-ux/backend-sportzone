@@ -79,19 +79,19 @@ export class Home implements OnDestroy {
 
   // Avatar để trong public/images/avatars/
   reviews = [
-    { name: 'Minh Quân', role: 'Cầu thủ phong trào', text: 'Áo đẹp, vải nhẹ, in tên rất nét!', avatar: 'images/avatars/a1.jpg' },
-    { name: 'Thu Hà', role: 'Runner Marathon', text: 'Giày êm, giao hàng nhanh, đúng size.', avatar: 'images/avatars/a2.jpg' },
-    { name: 'Hoàng Nam', role: 'Gymer', text: 'Hàng chính hãng, tư vấn size rất chuẩn.', avatar: 'images/avatars/a3.jpg' },
+    { name: 'Minh Quân', role: 'Cầu thủ phong trào', text: 'Áo đẹp, vải nhẹ, in tên rất nét!', avatar: 'https://tse4.mm.bing.net/th/id/OIP.g0ha9IZ72e21ep9WYLvqDAHaId?r=0&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { name: 'Thu Hà', role: 'Runner Marathon', text: 'Giày êm, giao hàng nhanh, đúng size.', avatar: 'https://tse3.mm.bing.net/th/id/OIP.hpUIPEhAi3tdwenUhQPTTgHaLH?r=0&rs=1&pid=ImgDetMain&o=7&rm=3' },
+    { name: 'Hoàng Nam', role: 'Gymer', text: 'Hàng chính hãng, tư vấn size rất chuẩn.', avatar: 'https://tse4.mm.bing.net/th/id/OIP.DDVsWfBmAJEuhReG9qJxtwHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3' },
   ];
 
   // Ảnh cộng đồng để trong public/images/gallery/
   gallery = [
-    'images/gallery/g1.jpg',
-    'images/gallery/g2.jpg',
-    'images/gallery/g3.jpg',
-    'images/gallery/g4.jpg',
-    'images/gallery/g5.jpg',
-    'images/gallery/g6.jpg',
+    'https://i.pinimg.com/736x/f9/3b/35/f93b35bd638de5bb4a757e765ca39bc2.jpg',
+    'https://tse3.mm.bing.net/th/id/OIP.3j0hw6YMgMB80NWHMq1O8QHaEx?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+    'https://tse3.mm.bing.net/th/id/OIP.AsIRajVooShvWYpPJUbx2AHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+    'https://tse2.mm.bing.net/th/id/OIP.jQG7WuyNl73aT079S5i1HQHaE7?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+    'https://tse1.mm.bing.net/th/id/OIP.EnC9R1EhAOcWPhoGbvtkuAHaFK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+    'https://tse3.mm.bing.net/th/id/OIP.SuVPRh3ig8DbN1WFQFgOyQHaNK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
   ];
 
   // ===== Thông báo nhỏ khi thêm giỏ =====
