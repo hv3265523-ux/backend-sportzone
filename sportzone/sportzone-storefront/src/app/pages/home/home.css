@@ -1,0 +1,5 @@
+img {
+  object-fit: contain;
+  background: #fff;
+  filter: brightness(1.06) contrast(1.05);
+}

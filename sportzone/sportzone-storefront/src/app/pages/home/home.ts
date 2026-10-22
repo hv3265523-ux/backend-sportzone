@@ -18,9 +18,9 @@ export class Home implements OnDestroy {
   // ===== Banner tự chạy =====
   // Ảnh để trong public/images/banners/
   banners = [
-    'images/banners/banner1.jpg',
-    'images/banners/banner2.jpg',
-    'images/banners/banner3.jpg',
+    'banner-1.png',
+    'banner-2.png',
+    'banner-3.png',
   ];
   currentBanner = signal(0);
   private bannerTimer = setInterval(

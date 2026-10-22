@@ -36,11 +36,15 @@ export interface Product {
   care: CareItem[];
 }
 
+// ẢNH DÙNG FILE RIÊNG (không dùng link nữa)
+// Để file ảnh vào thư mục: public/images/
+// Trong code chỉ ghi TÊN FILE (vd 'sp1.png'), đường dẫn tự thêm vào.
+const IMG_PATH = 'images/';
+
 // Mỗi sản phẩm có 4 ô ảnh: ảnh 1 (ảnh lớn + ô nhỏ đầu), ảnh 2, ảnh 3, ảnh 4.
-// Ô nào chưa có link thì tự dùng lại ảnh 1.
-// Muốn thêm ảnh: bỏ dấu // ở đầu dòng "ẢNH 2/3/4" rồi dán link vào giữa 2 dấu nháy.
+// Ô nào chưa có file thì tự dùng lại ảnh 1.
 const imgs = (src: string | string[]) => {
-  const list = (Array.isArray(src) ? src : [src]).filter(Boolean);
+  const list = (Array.isArray(src) ? src : [src]).filter(Boolean).map((f) => IMG_PATH + f.trim());
   return [0, 1, 2, 3].map((i) => list[i] ?? list[0]);
 };
 
@@ -81,12 +85,12 @@ const PRODUCTS: Product[] = [
     oldPrice: 1775000,
     discount: 20,
     images: imgs([
-      'https://cdn.hstatic.net/products/200000293662/106_bb2dfe1b14844c6ca95b401950ea8e9b_1024x1024.png', // ẢNH 1
-       'https://cdn.hstatic.net/products/200000293662/109_a77ca1c73ac8470b868230a0b370e2bd_1024x1024.png', // ẢNH 2
-       'https://cdn.hstatic.net/products/200000293662/108_90e51336d24d4964a02e381343865a9d_1024x1024.png', // ẢNH 3
-       'https://cdn.hstatic.net/products/200000293662/111_e69c7b544e4c4175b7cc94cc84a4a5ca_1024x1024.png', // ẢNH 4
+      'sp1.png', // ẢNH 1
+      'sp1,do2.png', // ẢNH 2
+      'sp3,trang1.png', // ẢNH 3
+      'sp1,trang2.webp', // ẢNH 4
     ]),
-    colors: ['Đỏ '],
+    colors: ['Đỏ', 'Trắng'],
     sizes: SIZES_SHIRT,
     voucher: VOUCHER,
     techTitle: 'Công Nghệ Vải Puma ULTRAWEAVE™ Siêu Nhẹ 72 Grams',
@@ -117,19 +121,19 @@ const PRODUCTS: Product[] = [
     tag: 'MỚI',
     badge: 'REPLICA DÁNFAN VERSION',
     brand: 'ADIDAS',
-    name: 'Áo Đấu Real Madrid Away',
+    name: 'ÁO BÓNG ĐÁ BỒ ĐÀO NHA WC2026',
     rating: 4.7,
     sold: 860,
     price: 1190000,
     oldPrice: 1700000,
     discount: 30,
     images: imgs([
-      'https://cdn.hstatic.net/products/200000293662/ao-bong-da-real-madrid-san-nha-26-27-climacool-tong-the_5d7f4df4a2704ef081506f1303620001_1024x1024.jpg', // ẢNH 1
-       'https://cdn.hstatic.net/products/200000293662/ao-bong-da-real-madrid-san-nha-26-27-climacool-chi-tiet-logo-adidas_ca3856c9b45f49d78385c321d1858891_1024x1024.jpg', // ẢNH 2
-       'https://cdn.hstatic.net/products/200000293662/ao-bong-da-real-madrid-san-nha-26-27-climacool-huy-hieu-clb_e5f6e711556c47c08e647841df7b748f_1024x1024.jpg', // ẢNH 3
-      'https://cdn.hstatic.net/products/200000293662/ao-bong-da-real-madrid-san-nha-26-27-climacool-logo-tay-ao_8cbfc2abacb64087bcc3bcab717d0318_1024x1024.jpg', // ẢNH 4
+      'SP2.png', // ẢNH 1
+      'sp2 xanh2.png', // ẢNH 2
+      'sp2 do,1.png', // ẢNH 3
+      'sp2 do,2.png', // ẢNH 4
     ]),
-    colors: [ 'Trắng Home'],
+    colors: ['Xanh Lá', 'Đỏ'],
     sizes: SIZES_SHIRT,
     voucher: VOUCHER,
     techTitle: 'Công Nghệ AEROREADY Thấm Hút Mồ Hôi Vượt Trội',
@@ -157,12 +161,12 @@ const PRODUCTS: Product[] = [
     oldPrice: 7800000,
     discount: 45,
     images: imgs([
-      'https://cdn.hstatic.net/products/1000008082/2xcz4_cc40abeace7140c4a055ba415abd30b1_master.jpeg', // ẢNH 1
-      'https://cdn.hstatic.net/products/1000008082/2xcz8_b6e448f891d7488e9787009760402501_master.jpeg', // ẢNH 2
-       'https://cdn.hstatic.net/products/1000008082/2xcz3_21f40195417140fea520e6db3c0eade8_master.jpeg  ', // ẢNH 3
-       'https://cdn.hstatic.net/products/1000008082/2xcz7_5b28ffe3504b4fdda4f6d64c919c8327_master.jpeg', // ẢNH 4
+      'sp3-1.png', // ẢNH 1
+      'sp3-2.png', // ẢNH 2
+      'sp3-3.png', // ẢNH 3
+      'sp3-4.png', // ẢNH 4
     ]),
-    colors: ['Xanh Lime'],
+    colors: ['Xanh Lime', 'Cam'],
     sizes: SIZES_SHOE,
     voucher: VOUCHER,
     techTitle: 'Đệm Khí ZoomX & Tấm Carbon Siêu Tốc',
@@ -195,12 +199,12 @@ const PRODUCTS: Product[] = [
     oldPrice: 2870000,
     discount: 25,
     images: imgs([
-      'https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/108166/03/sv01/fnd/VNM/fmt/png/Gi%C3%A0y-b%C3%B3ng-%C4%91%C3%A1-ULTRA-5-MATCH-FG/AG', // ẢNH 1
-       'https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/108166/03/fnd/VNM/fmt/png/Gi%C3%A0y-b%C3%B3ng-%C4%91%C3%A1-ULTRA-5-MATCH-FG/AG', // ẢNH 2
-      'https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/108166/03/bv/fnd/VNM/fmt/png/Gi%C3%A0y-b%C3%B3ng-%C4%91%C3%A1-ULTRA-5-MATCH-FG/AG', // ẢNH 3
-       'https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/108166/03/sv04/fnd/VNM/fmt/png/Gi%C3%A0y-b%C3%B3ng-%C4%91%C3%A1-ULTRA-5-MATCH-FG/AG', // ẢNH 4
+      'sp4-1.png', // ẢNH 1
+      'sp4-2.png', // ẢNH 2
+      'sp4-3.png', // ẢNH 3
+      'sp4-4.png', // ẢNH 4
     ]),
-    colors: ['Cam Neon'],
+    colors: ['Trắng', 'Xanh Đen'],
     sizes: SIZES_SHOE,
     voucher: VOUCHER,
     techTitle: 'Thiết Kế Siêu Nhẹ Cho Tốc Độ Tối Đa',
@@ -233,12 +237,12 @@ const PRODUCTS: Product[] = [
     oldPrice: 690000,
     discount: 20,
     images: imgs([
-      'https://cdn.hstatic.net/products/200000293662/qu_n_mu_1_b8231aeafa384160896fb2b3baa798ac_1024x1024.jpg', // ẢNH 1
-      'https://cdn.hstatic.net/products/200000293662/qu_n_mu_2_077f3ed9156c4035939f624e5e064a05_1024x1024.jpg', // ẢNH 2
-      'https://cdn.hstatic.net/products/200000293662/qu_n_mu_3_ca4b4ea7adaf49bbb518c03796faa11b_1024x1024.jpg', // ẢNH 3
-      // 'DÁN LINK ẢNH 4 VÀO ĐÂY', // ẢNH 4
+      'sp5-1.png', // ẢNH 1
+      'sp5-2.png', // ẢNH 2
+      'sp5-3.png', // ẢNH 3
+      'sp5-4.png', // ẢNH 4 (chưa có thì để vậy, tự dùng lại ảnh 1)
     ]),
-    colors: ['Xanh'],
+    colors: [ 'Đen','Đen Trắng','Trắng Đen','Trắng Đỏ'],
     sizes: SIZES_SHIRT,
     voucher: VOUCHER,
     techTitle: 'Nhẹ, Thoáng Và Co Giãn 4 Chiều',
@@ -249,7 +253,7 @@ const PRODUCTS: Product[] = [
   },
 
   // ╔══════════════════════════════════════════════════════════════╗
-  // ║  SẢN PHẨM 6 — Vớ Tất Thể Thao Manchester United              ║
+  // ║  SẢN PHẨM 6 — Vớ Tất Thể Thao          ║
   // ╚══════════════════════════════════════════════════════════════╝
   {
     id: 6,
@@ -258,19 +262,19 @@ const PRODUCTS: Product[] = [
     tag: 'CHÍNH HÃNG',
     badge: 'OFFICIAL SOCKS',
     brand: 'PUMA',
-    name: 'Vớ Tất Thể Thao Manchester United',
+    name: 'Vớ Tất Thể Thao ',
     rating: 4.8,
     sold: 1500,
     price: 220000,
     oldPrice: 275000,
     discount: 20,
     images: imgs([
-      'https://www.footballshirtculture.com/images/stories/manchester-united-2021-2022-home-kit/manchester_united_2021_2022_home_kit_j.jpeg', // ẢNH 1
-       'https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/7808d953c4374566ac432d83251b4494_9366/Bo_2_DJoi_Tat_Manchester_United_trang_JV5890_41_detail.jpg', // ẢNH 2
-       'https://cdn.hstatic.net/products/200000025394/joi_tat_san_nha_manchester_united_mua_giai_25-26_djen_ji7436_41_detail_1644bbdcb97e44a1a7ad6eb44b680f7c_grande.jpg', // ẢNH 3
-      'https://img01.ztat.net/article/spp-media-p1/de25e5d9aa724c818d0a05493e48cbeb/2342cbb4854c413bb95e2a00a39b6bdb.jpg?imwidth=762&filter=packshot', // ẢNH 4
+      'sp6-1.png', // ẢNH 1
+      'sp6-2.png', // ẢNH 2
+      'sp6-3.png', // ẢNH 3
+      'sp6-4.png', // ẢNH 4
     ]),
-    colors: ['Đen'],
+    colors: ['Đen', 'Trắng','Xanh', 'Vàng'],
     sizes: ['M', 'L'],
     voucher: VOUCHER,
     techTitle: 'Êm Chân, Thấm Hút Tốt',
@@ -281,7 +285,7 @@ const PRODUCTS: Product[] = [
   },
 
   // ╔══════════════════════════════════════════════════════════════╗
-  // ║  SẢN PHẨM 7 — Áo Khoác Man United Pre-Match                  ║
+  // ║  SẢN PHẨM 7 — Áo Khoác Man United                  ║
   // ╚══════════════════════════════════════════════════════════════╝
   {
     id: 7,
@@ -290,19 +294,19 @@ const PRODUCTS: Product[] = [
     tag: 'PRE-MATCH',
     badge: 'PRE-MATCH JACKET',
     brand: 'PUMA',
-    name: 'Áo Khoác Man United Pre-Match',
+    name: 'Áo Khoác Man United ',
     rating: 4.7,
     sold: 330,
     price: 1250000,
     oldPrice: 1560000,
     discount: 20,
     images: imgs([
-      'https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,w=700,h=700,f=webp/pub/media/catalog/product//4/0/4069996986756-1_ra7ocghvvaqrv0sh.jpg', // ẢNH 1
-       'https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,w=700,h=700,f=webp/pub/media/catalog/product//4/0/4069996986756-2_weu1iybnk3xxijgz.jpg', // ẢNH 2
-       'https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,w=700,h=700,f=webp/pub/media/catalog/product//4/0/4069996986756-3_4dxdshgbalvy3nnm.jpg', // ẢNH 3
-       'https://www.classicfootballshirts.co.uk/cdn-cgi/image/fit=pad,q=70,w=700,h=700,f=webp/pub/media/catalog/product//4/0/4069996986756-4_gaftcjb34dnkqybi.jpg', // ẢNH 4
+      'sp7-1.png', // ẢNH 1
+      'sp7-2.png', // ẢNH 2
+      'sp7-3.png', // ẢNH 3
+      'sp7-4.png', // ẢNH 4
     ]),
-    colors: ['Đen Đỏ'],
+    colors: ['Tím', 'Đỏ', 'Trắng', 'Xanh'],
     sizes: SIZES_SHIRT,
     voucher: VOUCHER,
     techTitle: 'Giữ Ấm Nhẹ, Phong Cách Cầu Thủ',
@@ -329,12 +333,12 @@ const PRODUCTS: Product[] = [
     oldPrice: 3200000,
     discount: 22,
     images: imgs([
-      'https://cdn.hstatic.net/products/1000061481/avatar__1_of_1__b6637e0da237454a960f68571978ee1e_1024x1024.jpg', // ẢNH 1
-       'https://cdn.hstatic.net/products/1000061481/dsc06268_87d2781f762548b4983e04944453ecff_1024x1024.jpg', // ẢNH 2
-       'https://cdn.hstatic.net/products/1000061481/dsc06269_8eeb98c880f14e8b882a478976999619_1024x1024.jpg', // ẢNH 3
-       'https://cdn.hstatic.net/products/1000061481/dsc06275_dbb19e43727d445589235c89c55878ca_1024x1024.jpg', // ẢNH 4
+      'sp8-1.png', // ẢNH 1
+      'sp8-2.png', // ẢNH 2
+      'sp8-3.png', // ẢNH 3
+      'sp8-4.png', // ẢNH 4
     ]),
-    colors: ['Xanh'],
+    colors: ['Xanh', 'Hồng'],
     sizes: SIZES_SHOE,
     voucher: VOUCHER,
     techTitle: 'Tốc Độ Tối Đa Với Upper Mỏng Nhẹ',

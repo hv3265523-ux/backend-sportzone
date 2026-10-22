@@ -1,0 +1,9 @@
+img {
+  object-fit: contain !important;
+  background: #fff;
+}
+img {
+  object-fit: contain !important;
+  background: #fff;
+  filter: brightness(1.06) contrast(1.05);
+}
