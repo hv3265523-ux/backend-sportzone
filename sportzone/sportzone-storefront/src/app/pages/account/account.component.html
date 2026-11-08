@@ -1,0 +1,274 @@
+<main class="account">
+  <div class="intro-band">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a routerLink="/"><i class="ms">home</i> Trang chủ</a><span>›</span>
+        <a routerLink="/account">Tài khoản của tôi</a><span>›</span>
+        <strong>Hồ sơ &amp; Sổ địa chỉ</strong>
+      </nav>
+
+      <div class="page-head">
+        <div>
+          <h1>TÀI KHOẢN CỦA TÔI</h1>
+          <p>Quản lý thông tin cá nhân, an toàn bảo mật và cập nhật sổ địa chỉ nhận thiết bị thể thao SportZone.</p>
+        </div>
+        <div class="head-badges">
+          <div class="tier">
+            <i class="ms fill">workspace_premium</i>
+            <span><small>HẠNG THẺ</small><strong>SportZone VIP</strong></span>
+          </div>
+          <div class="tier tier--pts">
+            <i class="ms fill">bolt</i>
+            <span><small>SPORTPOINT</small><strong>1.250 PTS</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap layout">
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="side">
+      <section class="card profile-card">
+        <div class="cover"></div>
+        <div class="avatar-wrap">
+          <img class="avatar" src="images/avatar.jpg" alt="Ảnh đại diện Vũ Anh Hoàng" />
+          <button type="button" class="cam" aria-label="Đổi ảnh đại diện"><i class="ms">photo_camera</i></button>
+        </div>
+        <h2>Vũ Anh Hoàng</h2>
+        <p class="mail">anhhoang.vu@sportzone.vn</p>
+        <span class="vip-chip"><i class="ms fill">workspace_premium</i> THÀNH VIÊN VIP</span>
+        <div class="spent">
+          <span><small>TÍCH LŨY MUA SẮM</small><strong>14.850.000đ</strong></span>
+          <i class="ms fill trophy">emoji_events</i>
+        </div>
+      </section>
+
+      <nav class="card menu" aria-label="Menu tài khoản">
+        <a *ngFor="let m of menu; let i = index" [routerLink]="m.link" [class.active]="i === 0">
+          <i class="ms">{{ m.icon }}</i>
+          <span class="lbl">{{ m.label }}</span>
+          <b class="pill" [ngClass]="m.pillClass" *ngIf="m.pill">{{ m.pill }}</b>
+          <i class="dot" *ngIf="m.dot"></i>
+          <i class="ms chev" *ngIf="i === 0">chevron_right</i>
+        </a>
+        <a class="logout" routerLink="/login"><i class="ms">logout</i><span class="lbl">Đăng xuất tài khoản</span></a>
+      </nav>
+
+      <section class="card help">
+        <h3><i class="ms fill">support_agent</i> Trợ giúp nhanh</h3>
+        <p>Bạn cần hỗ trợ xác minh thông tin hội viên hoặc đổi địa chỉ khẩn cấp?</p>
+        <a href="tel:19006868">Hotline VIP: 1900 6868</a>
+      </section>
+    </aside>
+
+    <!-- ===== CONTENT ===== -->
+    <div class="content">
+      <!-- Hồ sơ + Bảo mật -->
+      <section class="card stack" id="profile">
+        <div class="pad">
+          <div class="block-head">
+            <div>
+              <h2><i class="bar"></i>HỒ SƠ CỦA TÔI</h2>
+              <p>Quản lý thông tin hồ sơ để bảo mật và tối ưu trải nghiệm giao nhận phụ kiện SportZone.</p>
+            </div>
+            <span class="tag"><i class="ms fill">verified</i> CUSTOMER VIP</span>
+          </div>
+
+          <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="grid-2">
+            <div class="field">
+              <label for="fullName">Họ và tên <b>*</b></label>
+              <div class="input">
+                <i class="ms">badge</i>
+                <input id="fullName" type="text" formControlName="fullName" />
+              </div>
+              <em class="err" *ngIf="profileForm.controls.fullName.touched && profileForm.controls.fullName.invalid">
+                Vui lòng nhập họ và tên.
+              </em>
+            </div>
+
+            <div class="field">
+              <label for="email">
+                Địa chỉ Email <b>*</b>
+                <span class="verified"><i class="ms fill">verified</i> Đã xác thực</span>
+              </label>
+              <div class="input input--locked">
+                <i class="ms">mail</i>
+                <input id="email" type="email" formControlName="email" />
+                <i class="ms lock">lock</i>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="phone">Số điện thoại <b>*</b></label>
+              <div class="phone-row">
+                <div class="input">
+                  <i class="ms">call</i>
+                  <input id="phone" type="tel" formControlName="phone" />
+                </div>
+                <button type="button" class="btn btn--tonal">Đổi SĐT / OTP</button>
+              </div>
+              <em class="err" *ngIf="profileForm.controls.phone.touched && profileForm.controls.phone.invalid">
+                Số điện thoại chưa hợp lệ.
+              </em>
+            </div>
+
+            <div class="field-pair">
+              <div class="field">
+                <label for="birthday">Ngày sinh</label>
+                <div class="input">
+                  <i class="ms">calendar_month</i>
+                  <input id="birthday" type="date" formControlName="birthday" />
+                </div>
+              </div>
+              <fieldset class="field gender">
+                <legend>Giới tính</legend>
+                <div class="radios">
+                  <label><input type="radio" value="male" formControlName="gender" /> Nam</label>
+                  <label><input type="radio" value="female" formControlName="gender" /> Nữ</label>
+                  <label><input type="radio" value="other" formControlName="gender" /> Khác</label>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="actions full">
+              <span class="ok" *ngIf="saved"><i class="ms fill">check_circle</i> Đã lưu thay đổi</span>
+              <button type="button" class="btn btn--ghost" (click)="resetProfile()">Huỷ thay đổi</button>
+              <button type="submit" class="btn btn--primary"><i class="ms">save</i> LƯU THAY ĐỔI</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="pad security" id="security">
+          <div class="block-head block-head--tight">
+            <div>
+              <h2 class="sm"><i class="ms">lock_reset</i>BẢO MẬT &amp; ĐỔI MẬT KHẨU</h2>
+              <p>
+                Nên dùng mật khẩu có từ 8 ký tự trở lên kết hợp chữ hoa, chữ số và biểu tượng đặc biệt để bảo vệ tài
+                khoản thành viên.
+              </p>
+            </div>
+          </div>
+
+          <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" class="grid-3">
+            <div class="field">
+              <label for="pwCurrent">Mật khẩu hiện tại</label>
+              <input id="pwCurrent" class="plain" [type]="showPassword ? 'text' : 'password'" formControlName="current" placeholder="••••••••" />
+            </div>
+
+            <div class="field">
+              <label for="pwNew">Mật khẩu mới</label>
+              <input id="pwNew" class="plain" [type]="showPassword ? 'text' : 'password'" formControlName="next" placeholder="Tối thiểu 8 ký tự" />
+              <div class="meter">
+                <span class="track"><i [style.width.%]="(passwordForm.value.next ? strength.level : 2) * 25" [attr.data-lv]="strength.level"></i></span>
+                <small>{{ passwordForm.value.next ? strength.label : 'Trung bình' }}</small>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="pwConfirm">Xác nhận mật khẩu mới</label>
+              <input id="pwConfirm" class="plain" [type]="showPassword ? 'text' : 'password'" formControlName="confirm" placeholder="Nhập lại mật khẩu mới" />
+              <em class="err" *ngIf="passwordMismatch">Mật khẩu xác nhận chưa khớp.</em>
+            </div>
+
+            <div class="actions full">
+              <label class="show-pw">
+                <input type="checkbox" [(ngModel)]="showPassword" [ngModelOptions]="{ standalone: true }" /> Hiện mật khẩu
+              </label>
+              <button type="submit" class="btn btn--tonal"><i class="ms">key</i> CẬP NHẬT MẬT KHẨU</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Địa chỉ -->
+      <section class="card pad" id="addresses">
+        <div class="block-head">
+          <div>
+            <h2><i class="bar"></i>SỔ ĐỊA CHỈ GIAO HÀNG <span class="count">({{ addresses.length }})</span></h2>
+            <p>Quản lý các địa điểm nhận trang phục, giày thi đấu và dụng cụ thể thao nhanh chóng.</p>
+          </div>
+          <button type="button" class="btn btn--dark"><i class="ms">add_location_alt</i> + Thêm Địa Chỉ Mới</button>
+        </div>
+
+        <div class="addr-wrap">
+          <article class="addr" *ngFor="let a of addresses" [class.addr--default]="a.isDefault">
+            <header>
+              <ng-container *ngIf="a.isDefault; else secondary">
+                <span class="b b--solid">{{ a.badge }}</span>
+                <span class="b b--soft">{{ a.label }}</span>
+              </ng-container>
+              <ng-template #secondary>
+                <span class="b b--soft">{{ a.label }}</span>
+                <span class="b">{{ a.badge }}</span>
+              </ng-template>
+              <i class="ms kind">{{ a.icon }}</i>
+            </header>
+            <h3>{{ a.name }} <i class="sep"></i> <span>{{ a.phone }}</span></h3>
+            <p class="detail">{{ a.detail }}</p>
+            <p class="meta">{{ a.meta }}</p>
+            <footer>
+              <span class="pref" *ngIf="a.isDefault"><i class="ms fill">check_circle</i> Nơi nhận hàng ưu tiên</span>
+              <button type="button" class="pref pref--btn" *ngIf="!a.isDefault" (click)="setDefault(a.id)">
+                <i class="ms">radio_button_unchecked</i> Đặt làm mặc định
+              </button>
+              <span class="grow"></span>
+              <button type="button" class="mini"><i class="ms">edit</i> {{ a.isDefault ? 'Chỉnh sửa' : 'Sửa' }}</button>
+              <button type="button" class="mini mini--del" [disabled]="a.isDefault" (click)="removeAddress(a.id)">
+                <i class="ms">delete</i> Xóa
+              </button>
+            </footer>
+          </article>
+        </div>
+      </section>
+
+      <!-- Tài liệu kỹ thuật -->
+      <section class="card pad" id="docs">
+        <div class="block-head">
+          <div>
+            <h2 class="sm"><i class="ms">terminal</i>TÀI LIỆU KỸ THUẬT &amp; COMPONENT ARCHITECTURE</h2>
+            <p>Thiết kế mô đun hoá phục vụ frontend React/Next.js với quy chuẩn đặt tên API Service và luồng dữ liệu RESTful.</p>
+          </div>
+          <span class="tag tag--plain">REACT + TAILWIND V3.4</span>
+        </div>
+
+        <div class="docs">
+          <div class="tree">
+            <h4><i class="ms">account_tree</i> Component Tree</h4>
+            <div class="node" *ngFor="let c of componentTree">
+              <code>{{ c.name }}</code><small>{{ c.note }}</small>
+            </div>
+          </div>
+          <div class="term">
+            <div class="term-bar">
+              <span class="dots"><i></i><i></i><i></i></span>
+              <span class="file">services/addressService.js</span>
+              <span class="std">Axios / Patch Standard</span>
+            </div>
+            <pre><code>{{ codeSample }}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Banner -->
+      <section class="promo">
+        <div class="promo-text">
+          <small><i class="ms">bolt</i> SPORTZONE PERFORMANCE PHILOSOPHY</small>
+          <h2>HIỆU SUẤT KHÔNG GIỚI HẠN</h2>
+          <p>
+            Mỗi bước chạy, từng cú đập và mọi buổi tập luyện đều xứng đáng được trang bị công nghệ tối tân nhất. Tích
+            luỹ thêm 250 điểm để mở khoá đặc quyền VIP PRO Platinum.
+          </p>
+          <div class="promo-actions">
+            <a routerLink="/products" class="btn btn--white">Khám Phá BST Mới</a>
+            <a routerLink="/account/vouchers" class="btn btn--blue">Xem Ưu Đãi Hội Viên</a>
+          </div>
+        </div>
+        <figure class="promo-img">
+          <img src="images/promo-shoe.png" alt="Giày chạy bộ Sportzone" />
+          <figcaption><i class="ms fill">verified</i> CHÍNH HÃNG 100% | BẢO HÀNH 12 THÁNG</figcaption>
+        </figure>
+      </section>
+    </div>
+  </div>
+</main>
