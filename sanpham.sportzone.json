@@ -1,0 +1,516 @@
+[
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57dd"
+    },
+    "name": "Áo thun thể thao Nike Dri-FIT",
+    "description": "Áo thể thao nam thoáng khí, thấm hút mồ hôi tốt.",
+    "price": 850000,
+    "salePrice": 690000,
+    "stock": 50,
+    "categoryId": "Áo thể thao",
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85",
+    "brand": "Nike",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Đen",
+      "Trắng",
+      "Xanh"
+    ],
+    "rating": 4.8,
+    "reviewCount": 35,
+    "status": "active",
+    "createdAt": "2026-11-08T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57de"
+    },
+    "name": "Áo thể thao Adidas Training",
+    "description": "Áo tập luyện Adidas thiết kế năng động.",
+    "price": 750000,
+    "salePrice": 620000,
+    "stock": 40,
+    "categoryId": "Áo thể thao",
+    "image": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=800&q=85",
+    "brand": "Adidas",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Đen",
+      "Trắng"
+    ],
+    "rating": 4.7,
+    "reviewCount": 28,
+    "status": "active",
+    "createdAt": "2026-11-07T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57df"
+    },
+    "name": "Áo bóng đá Manchester United",
+    "description": "Áo bóng đá chất liệu polyester thoáng mát.",
+    "price": 550000,
+    "salePrice": 450000,
+    "stock": 35,
+    "categoryId": "Áo thể thao",
+    "image": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=85",
+    "brand": "Adidas",
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Đỏ",
+      "Đen"
+    ],
+    "rating": 4.9,
+    "reviewCount": 42,
+    "status": "active",
+    "createdAt": "2026-11-06T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57e0"
+    },
+    "name": "Áo chạy bộ Puma Active",
+    "description": "Áo chạy bộ nhẹ, co giãn và nhanh khô.",
+    "price": 650000,
+    "salePrice": 520000,
+    "stock": 25,
+    "categoryId": "Áo thể thao",
+    "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=85",
+    "brand": "Puma",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Xanh",
+      "Đen"
+    ],
+    "rating": 4.6,
+    "reviewCount": 19,
+    "status": "active",
+    "createdAt": "2026-11-05T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57e1"
+    },
+    "name": "Giày chạy bộ Nike Air Zoom",
+    "description": "Giày chạy bộ êm ái, hỗ trợ giảm chấn.",
+    "price": 3200000,
+    "salePrice": 2690000,
+    "stock": 30,
+    "categoryId": "Giày thể thao",
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=85",
+    "brand": "Nike",
+    "sizes": [
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Đen",
+      "Trắng"
+    ],
+    "rating": 4.9,
+    "reviewCount": 65,
+    "status": "active",
+    "createdAt": "2026-11-04T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57e2"
+    },
+    "name": "Giày Adidas Ultraboost",
+    "description": "Giày thể thao Adidas đệm êm dành cho chạy bộ.",
+    "price": 3500000,
+    "salePrice": 2990000,
+    "stock": 22,
+    "categoryId": "Giày thể thao",
+    "image": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=800&q=85",
+    "brand": "Adidas",
+    "sizes": [
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Trắng",
+      "Đen"
+    ],
+    "rating": 4.8,
+    "reviewCount": 51,
+    "status": "active",
+    "createdAt": "2026-11-03T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57e3"
+    },
+    "name": "Giày bóng đá Nike Mercurial",
+    "description": "Giày đá bóng hỗ trợ tăng tốc và kiểm soát bóng.",
+    "price": 2800000,
+    "salePrice": 2350000,
+    "stock": 18,
+    "categoryId": "Giày thể thao",
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=85",
+    "brand": "Nike",
+    "sizes": [
+      "39",
+      "40",
+      "41",
+      "42"
+    ],
+    "colors": [
+      "Xanh",
+      "Đỏ"
+    ],
+    "rating": 4.7,
+    "reviewCount": 38,
+    "status": "active",
+    "createdAt": "2026-11-02T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57e4"
+    },
+    "name": "Giày thể thao Puma RS-X",
+    "description": "Giày sneaker phong cách trẻ trung, cá tính.",
+    "price": 2100000,
+    "salePrice": 1790000,
+    "stock": 27,
+    "categoryId": "Giày thể thao",
+    "image": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=800&q=85",
+    "brand": "Puma",
+    "sizes": [
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Đen",
+      "Trắng"
+    ],
+    "rating": 4.6,
+    "reviewCount": 24,
+    "status": "active",
+    "createdAt": "2026-11-01T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57e5"
+    },
+    "name": "Giày chạy bộ New Balance 574",
+    "description": "Giày thể thao thiết kế cổ điển, dễ phối đồ.",
+    "price": 2500000,
+    "salePrice": 2150000,
+    "stock": 20,
+    "categoryId": "Giày thể thao",
+    "image": "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=85",
+    "brand": "New Balance",
+    "sizes": [
+      "39",
+      "40",
+      "41",
+      "42"
+    ],
+    "colors": [
+      "Xám",
+      "Trắng"
+    ],
+    "rating": 4.8,
+    "reviewCount": 32,
+    "status": "active",
+    "createdAt": "2026-10-30T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57e6"
+    },
+    "name": "Quần short thể thao Nike",
+    "description": "Quần short tập gym co giãn, thoáng khí.",
+    "price": 650000,
+    "salePrice": 490000,
+    "stock": 45,
+    "categoryId": "Quần thể thao",
+    "image": "https://images.unsplash.com/photo-1517438476312-10d79c077509?auto=format&fit=crop&w=800&q=85",
+    "brand": "Nike",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Đen",
+      "Xanh"
+    ],
+    "rating": 4.7,
+    "reviewCount": 20,
+    "status": "active",
+    "createdAt": "2026-10-29T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57e7"
+    },
+    "name": "Quần jogger Adidas",
+    "description": "Quần jogger thể thao phong cách năng động.",
+    "price": 950000,
+    "salePrice": 790000,
+    "stock": 30,
+    "categoryId": "Quần thể thao",
+    "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=85",
+    "brand": "Adidas",
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Đen",
+      "Xám"
+    ],
+    "rating": 4.8,
+    "reviewCount": 26,
+    "status": "active",
+    "createdAt": "2026-10-28T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57e8"
+    },
+    "name": "Quần legging nữ Puma",
+    "description": "Quần tập yoga co giãn tốt, ôm dáng.",
+    "price": 850000,
+    "salePrice": 690000,
+    "stock": 24,
+    "categoryId": "Quần thể thao",
+    "image": "https://images.unsplash.com/photo-1506629905607-d9b297d52c5c?auto=format&fit=crop&w=800&q=85",
+    "brand": "Puma",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Đen",
+      "Xám"
+    ],
+    "rating": 4.6,
+    "reviewCount": 17,
+    "status": "active",
+    "createdAt": "2026-10-27T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57e9"
+    },
+    "name": "Quần bóng đá Adidas",
+    "description": "Quần bóng đá nhẹ, thoải mái khi vận động.",
+    "price": 450000,
+    "salePrice": 350000,
+    "stock": 38,
+    "categoryId": "Quần thể thao",
+    "image": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=800&q=85",
+    "brand": "Adidas",
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Đen",
+      "Trắng"
+    ],
+    "rating": 4.5,
+    "reviewCount": 14,
+    "status": "active",
+    "createdAt": "2026-10-26T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57ea"
+    },
+    "name": "Balo thể thao Nike Brasilia",
+    "description": "Balo đa năng đựng đồ tập và phụ kiện.",
+    "price": 1200000,
+    "salePrice": 990000,
+    "stock": 20,
+    "categoryId": "Balo và phụ kiện",
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=85",
+    "brand": "Nike",
+    "sizes": [],
+    "colors": [
+      "Đen",
+      "Xanh"
+    ],
+    "rating": 4.8,
+    "reviewCount": 31,
+    "status": "active",
+    "createdAt": "2026-10-25T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57eb"
+    },
+    "name": "Balo Adidas Classic",
+    "description": "Balo thể thao thiết kế đơn giản, tiện dụng.",
+    "price": 950000,
+    "salePrice": 790000,
+    "stock": 26,
+    "categoryId": "Balo và phụ kiện",
+    "image": "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=800&q=85",
+    "brand": "Adidas",
+    "sizes": [],
+    "colors": [
+      "Đen",
+      "Trắng"
+    ],
+    "rating": 4.7,
+    "reviewCount": 22,
+    "status": "active",
+    "createdAt": "2026-10-24T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57ec"
+    },
+    "name": "Túi đựng giày thể thao",
+    "description": "Túi đựng giày chống bụi, tiện lợi khi đi tập.",
+    "price": 350000,
+    "salePrice": 280000,
+    "stock": 40,
+    "categoryId": "Balo và phụ kiện",
+    "image": "https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=800&q=85",
+    "brand": "Nike",
+    "sizes": [],
+    "colors": [
+      "Đen"
+    ],
+    "rating": 4.5,
+    "reviewCount": 12,
+    "status": "active",
+    "createdAt": "2026-10-23T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57ed"
+    },
+    "name": "Bình nước thể thao Adidas",
+    "description": "Bình nước dung tích lớn dành cho tập luyện.",
+    "price": 250000,
+    "salePrice": 199000,
+    "stock": 60,
+    "categoryId": "Balo và phụ kiện",
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=800&q=85",
+    "brand": "Adidas",
+    "sizes": [],
+    "colors": [
+      "Xanh",
+      "Đen"
+    ],
+    "rating": 4.6,
+    "reviewCount": 18,
+    "status": "active",
+    "createdAt": "2026-10-22T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57ee"
+    },
+    "name": "Tất thể thao Nike Everyday",
+    "description": "Tất thể thao mềm mại, thấm hút mồ hôi.",
+    "price": 220000,
+    "salePrice": 180000,
+    "stock": 80,
+    "categoryId": "Balo và phụ kiện",
+    "image": "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?auto=format&fit=crop&w=800&q=85",
+    "brand": "Nike",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Trắng",
+      "Đen"
+    ],
+    "rating": 4.7,
+    "reviewCount": 29,
+    "status": "active",
+    "createdAt": "2026-10-21T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57ef"
+    },
+    "name": "Găng tay tập gym Adidas",
+    "description": "Găng tay bảo vệ lòng bàn tay khi tập gym.",
+    "price": 390000,
+    "salePrice": 320000,
+    "stock": 32,
+    "categoryId": "Balo và phụ kiện",
+    "image": "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=800&q=85",
+    "brand": "Adidas",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      "Đen",
+      "Xám"
+    ],
+    "rating": 4.5,
+    "reviewCount": 16,
+    "status": "active",
+    "createdAt": "2026-10-20T08:00:00.000Z"
+  },
+  {
+    "_id": {
+      "$oid": "6aefef4b6c9a6a2666bb57f0"
+    },
+    "name": "Mũ lưỡi trai thể thao Puma",
+    "description": "Mũ thể thao phong cách trẻ trung, chống nắng.",
+    "price": 450000,
+    "salePrice": 360000,
+    "stock": 28,
+    "categoryId": "Balo và phụ kiện",
+    "image": "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=800&q=85",
+    "brand": "Puma",
+    "sizes": [],
+    "colors": [
+      "Đen",
+      "Trắng",
+      "Đỏ"
+    ],
+    "rating": 4.6,
+    "reviewCount": 13,
+    "status": "active",
+    "createdAt": "2026-10-19T08:00:00.000Z"
+  }
+]
