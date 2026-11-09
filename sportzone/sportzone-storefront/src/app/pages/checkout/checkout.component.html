@@ -1,0 +1,353 @@
+<div class="mx-auto max-w-6xl px-4 py-6">
+  @if (placedOrder(); as order) {
+    <!-- MÀN HÌNH HOÀN TẤT -->
+    <div class="mx-auto max-w-xl rounded-2xl bg-white p-8 text-center shadow">
+      <h1 class="text-2xl font-extrabold text-blue-900">ĐẶT HÀNG THÀNH CÔNG</h1>
+      <p class="mt-2 text-slate-600">Mã đơn hàng của bạn</p>
+      <p class="text-3xl font-extrabold text-blue-700">{{ order.code }}</p>
+
+      <div class="mt-6 space-y-2 text-left text-sm text-slate-700">
+        <p><b>Người nhận:</b> {{ order.fullName }}</p>
+        <p><b>Địa chỉ:</b> {{ order.address }}</p>
+        <p><b>Vận chuyển:</b> {{ order.shippingLabel }}</p>
+        <p><b>Thanh toán:</b> {{ order.paymentLabel }}</p>
+        <p><b>Số sản phẩm:</b> {{ order.itemCount }}</p>
+        <p><b>Tổng thanh toán:</b> {{ vnd(order.total) }}</p>
+        <p>Thông tin đơn hàng sẽ được gửi tới {{ order.email }}</p>
+      </div>
+
+      @if (order.paymentPending) {
+        <p class="mt-4 rounded-lg bg-amber-50 p-3 text-sm text-amber-800">
+          Đơn hàng đang chờ thanh toán online.
+        </p>
+      }
+    </div>
+  } @else {
+    <!-- TIÊU ĐỀ + CÁC BƯỚC -->
+    <div class="flex items-end gap-3">
+      <h1 class="text-4xl font-extrabold text-blue-900">GIỎ HÀNG CỦA BẠN</h1>
+      <span class="mb-1 rounded-full bg-slate-200 px-3 py-0.5 text-xs">
+        {{ itemCount() }} sản phẩm
+      </span>
+    </div>
+
+    <div class="my-6 flex items-center justify-center gap-4 rounded-2xl bg-white p-4 text-sm shadow-sm">
+      <span class="text-slate-500">1. Giỏ hàng</span>
+      <span class="h-px w-16 bg-blue-900"></span>
+      <span class="font-bold text-blue-900">2. Thanh toán &amp; Địa chỉ</span>
+      <span class="h-px w-16 bg-slate-300"></span>
+      <span class="text-slate-400">3. Hoàn tất đơn hàng</span>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-[1fr_380px]">
+      <!-- CỘT TRÁI: FORM -->
+      <div class="space-y-6">
+        <!-- 1. THÔNG TIN GIAO HÀNG -->
+        <section class="rounded-2xl bg-white p-6 shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-xl font-extrabold text-blue-900">1. THÔNG TIN GIAO HÀNG</h2>
+            <div class="flex gap-2 text-sm">
+              <button
+                type="button"
+                (click)="addressLabel.set('home')"
+                class="rounded-full border px-3 py-1"
+                [class]="addressLabel() === 'home' ? 'border-blue-900 bg-blue-900 text-white' : 'border-slate-300'"
+              >
+                Nhà riêng
+              </button>
+              <button
+                type="button"
+                (click)="addressLabel.set('office')"
+                class="rounded-full border px-3 py-1"
+                [class]="addressLabel() === 'office' ? 'border-blue-900 bg-blue-900 text-white' : 'border-slate-300'"
+              >
+                Văn phòng
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            <div>
+              <label class="text-sm font-semibold">Họ và tên người nhận *</label>
+              <input class="mt-1 w-full rounded-lg border border-slate-300 p-3"
+                placeholder="Nguyễn Văn A" [(ngModel)]="fullName" />
+              @if (tried() && errors().fullName) {
+                <p class="mt-1 text-xs text-red-600">{{ errors().fullName }}</p>
+              }
+            </div>
+            <div>
+              <label class="text-sm font-semibold">Số điện thoại liên hệ *</label>
+              <input class="mt-1 w-full rounded-lg border border-slate-300 p-3"
+                placeholder="0912 345 678" [(ngModel)]="phone" />
+              @if (tried() && errors().phone) {
+                <p class="mt-1 text-xs text-red-600">{{ errors().phone }}</p>
+              }
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <label class="text-sm font-semibold">Email nhận thông báo đơn hàng *</label>
+            <input type="email" class="mt-1 w-full rounded-lg border border-slate-300 p-3"
+              placeholder="nguyenvana@sportzone.vn" [(ngModel)]="email" />
+            @if (tried() && errors().email) {
+              <p class="mt-1 text-xs text-red-600">{{ errors().email }}</p>
+            }
+          </div>
+
+          <div class="mt-4 grid gap-4 sm:grid-cols-3">
+            <div>
+              <label class="text-sm font-semibold">Tỉnh / Thành phố *</label>
+              <input class="mt-1 w-full rounded-lg border border-slate-300 p-3"
+                placeholder="Hà Nội" [(ngModel)]="province" />
+              @if (tried() && errors().province) {
+                <p class="mt-1 text-xs text-red-600">{{ errors().province }}</p>
+              }
+            </div>
+            <div>
+              <label class="text-sm font-semibold">Quận / Huyện *</label>
+              <input class="mt-1 w-full rounded-lg border border-slate-300 p-3"
+                placeholder="Quận Cầu Giấy" [(ngModel)]="district" />
+              @if (tried() && errors().district) {
+                <p class="mt-1 text-xs text-red-600">{{ errors().district }}</p>
+              }
+            </div>
+            <div>
+              <label class="text-sm font-semibold">Phường / Xã *</label>
+              <input class="mt-1 w-full rounded-lg border border-slate-300 p-3"
+                placeholder="Phường Dịch Vọng Hậu" [(ngModel)]="ward" />
+              @if (tried() && errors().ward) {
+                <p class="mt-1 text-xs text-red-600">{{ errors().ward }}</p>
+              }
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <label class="text-sm font-semibold">Địa chỉ chi tiết (Số nhà, tên tòa nhà, đường) *</label>
+            <input class="mt-1 w-full rounded-lg border border-slate-300 p-3"
+              placeholder="Tầng 6, Tháp Thể Thao SportZone, 128 Cầu Giấy"
+              [(ngModel)]="addressDetail" />
+            @if (tried() && errors().addressDetail) {
+              <p class="mt-1 text-xs text-red-600">{{ errors().addressDetail }}</p>
+            }
+          </div>
+
+          <div class="mt-4">
+            <div class="flex justify-between text-sm">
+              <label class="font-semibold">Ghi chú giao hàng (Tùy chọn)</label>
+              <span class="text-slate-500">{{ note().length }}/{{ rules.noteMaxLength }}</span>
+            </div>
+            <textarea rows="2" class="mt-1 w-full rounded-lg border border-slate-300 p-3"
+              placeholder="Giao trong giờ hành chính, gọi trước khi giao 15 phút..."
+              [maxlength]="rules.noteMaxLength" [(ngModel)]="note"></textarea>
+          </div>
+        </section>
+
+        <!-- 2. PHƯƠNG THỨC VẬN CHUYỂN -->
+        <section class="rounded-2xl bg-white p-6 shadow-sm">
+          <h2 class="text-xl font-extrabold text-blue-900">2. PHƯƠNG THỨC VẬN CHUYỂN</h2>
+          <p class="text-sm text-slate-500">Chọn gói giao hàng tiêu chuẩn hoặc siêu tốc</p>
+
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            <label class="cursor-pointer rounded-xl border-2 p-4"
+              [class]="shipping() === 'standard' ? 'border-blue-900 bg-blue-50' : 'border-slate-200'">
+              <input type="radio" name="shipping" value="standard" [(ngModel)]="shippingMethod" />
+              <b class="ml-2">Giao Hàng Tiêu Chuẩn</b>
+              <p class="mt-1 text-xs text-slate-500">2 - 3 ngày làm việc (Toàn quốc)</p>
+              <p class="mt-3 flex justify-between text-sm">
+                <span class="text-blue-700">Miễn phí cho đơn từ {{ vnd(rules.freeShippingMin) }}</span>
+                <b>{{ totals().subtotal >= rules.freeShippingMin ? '0đ' : vnd(rules.standardFee) }}</b>
+              </p>
+            </label>
+
+            <label class="rounded-xl border-2 p-4"
+              [class]="
+                !expressAllowed()
+                  ? 'cursor-not-allowed border-slate-200 opacity-50'
+                  : shipping() === 'express'
+                    ? 'cursor-pointer border-blue-900 bg-blue-50'
+                    : 'cursor-pointer border-slate-200'
+              ">
+              <input type="radio" name="shipping" value="express"
+                [disabled]="!expressAllowed()" [(ngModel)]="shippingMethod" />
+              <b class="ml-2">SportZone Express (2H)</b>
+              <p class="mt-1 text-xs text-slate-500">Giao trong 2 giờ tại HN &amp; TP.HCM</p>
+              <p class="mt-3 flex justify-between text-sm">
+                <span>Ưu tiên xếp chuyến tức thì</span>
+                <b>{{ vnd(rules.expressFee) }}</b>
+              </p>
+              @if (!expressAllowed()) {
+                <p class="mt-1 text-xs text-red-600">Chỉ áp dụng tại Hà Nội và TP.HCM</p>
+              }
+            </label>
+          </div>
+        </section>
+
+        <!-- 3. PHƯƠNG THỨC THANH TOÁN -->
+        <section class="rounded-2xl bg-white p-6 shadow-sm">
+          <h2 class="text-xl font-extrabold text-blue-900">3. PHƯƠNG THỨC THANH TOÁN</h2>
+          <p class="text-sm text-slate-500">Chọn kênh thanh toán linh hoạt, an toàn tuyệt đối</p>
+
+          <div class="mt-4 space-y-3">
+            <label class="flex cursor-pointer items-start gap-3 rounded-xl p-4"
+              [class]="paymentMethod() === 'cod' ? 'bg-blue-50 ring-2 ring-blue-900' : 'bg-slate-50'">
+              <input type="radio" name="payment" value="cod" class="mt-1" [(ngModel)]="paymentMethod" />
+              <span>
+                <b>Thanh toán khi nhận hàng (COD)</b>
+                <span class="ml-2 rounded bg-blue-100 px-2 py-0.5 text-xs">Phổ biến</span>
+                <span class="block text-sm text-slate-600">
+                  Đồng kiểm sản phẩm thể thao, thử kích cỡ và thanh toán trực tiếp cho nhân viên giao hàng.
+                </span>
+              </span>
+            </label>
+
+            <label class="flex cursor-pointer items-start gap-3 rounded-xl p-4"
+              [class]="paymentMethod() === 'vnpay' ? 'bg-blue-50 ring-2 ring-blue-900' : 'bg-slate-50'">
+              <input type="radio" name="payment" value="vnpay" class="mt-1" [(ngModel)]="paymentMethod" />
+              <span>
+                <b>Cổng VNPAY (QR Code / Thẻ ATM / Visa / Master)</b>
+                <span class="ml-2 rounded bg-orange-100 px-2 py-0.5 text-xs text-orange-700">
+                  GIẢM {{ vnd(rules.vnpayDiscount) }}
+                </span>
+                <span class="block text-sm text-slate-600">
+                  Quét mã QR bằng ứng dụng ngân hàng di động hoặc thanh toán thẻ bảo mật 3D Secure.
+                </span>
+              </span>
+            </label>
+
+            <label class="flex cursor-pointer items-start gap-3 rounded-xl p-4"
+              [class]="paymentMethod() === 'momo' ? 'bg-blue-50 ring-2 ring-blue-900' : 'bg-slate-50'">
+              <input type="radio" name="payment" value="momo" class="mt-1" [(ngModel)]="paymentMethod" />
+              <span>
+                <b>Ví Điện Tử MoMo</b>
+                <span class="block text-sm text-slate-600">
+                  Thanh toán nhanh 1-chạm qua ứng dụng ví điện tử MoMo với ưu đãi tích lũy điểm thưởng.
+                </span>
+              </span>
+            </label>
+
+            <label class="flex cursor-pointer items-start gap-3 rounded-xl p-4"
+              [class]="paymentMethod() === 'zalopay' ? 'bg-blue-50 ring-2 ring-blue-900' : 'bg-slate-50'">
+              <input type="radio" name="payment" value="zalopay" class="mt-1" [(ngModel)]="paymentMethod" />
+              <span>
+                <b>Ví Điện Tử ZaloPay</b>
+                <span class="block text-sm text-slate-600">
+                  Liên kết tài khoản ví ZaloPay hoàn tiền liền tay cho các bộ trang phục thể thao cao cấp.
+                </span>
+              </span>
+            </label>
+          </div>
+        </section>
+      </div>
+
+      <!-- CỘT PHẢI: ĐƠN HÀNG -->
+      <aside class="h-fit rounded-2xl bg-white shadow-sm lg:sticky lg:top-4">
+        <div class="p-5">
+          <div class="flex items-center justify-between">
+            <h2 class="font-extrabold text-blue-900">ĐƠN HÀNG CỦA BẠN</h2>
+            <span class="rounded bg-slate-200 px-2 py-0.5 text-xs">{{ items().length }} MÓN</span>
+          </div>
+
+          <div class="mt-4 space-y-4">
+            @for (item of items(); track item.id) {
+              <div class="flex gap-3">
+                @if (item.image) {
+                  <img [src]="item.image" [alt]="item.name" class="h-16 w-16 rounded-lg object-cover" />
+                } @else {
+                  <div class="h-16 w-16 shrink-0 rounded-lg bg-slate-200"></div>
+                }
+                <div class="flex-1 text-sm">
+                  <p class="font-bold text-blue-900">{{ item.name }}</p>
+                  @if (item.variant) {
+                    <p class="text-xs text-slate-500">{{ item.variant }}</p>
+                  }
+                  @if (item.customization) {
+                    <p class="text-xs text-blue-700">{{ item.customization.label }}</p>
+                  }
+                  @if (item.badge) {
+                    <p class="text-xs text-blue-700">{{ item.badge }}</p>
+                  }
+                </div>
+                <div class="text-right text-sm">
+                  <p class="font-bold">{{ vnd(item.unitPrice) }}</p>
+                  @if (item.originalPrice) {
+                    <p class="text-xs text-slate-400 line-through">{{ vnd(item.originalPrice) }}</p>
+                  }
+                  <p class="text-xs text-slate-500">x{{ item.quantity }}</p>
+                </div>
+              </div>
+            }
+          </div>
+
+          @if (voucher(); as v) {
+            <div class="mt-4 rounded-xl bg-blue-50 p-3 text-sm">
+              <p class="font-bold text-blue-900">MÃ {{ v.code }}</p>
+              <p class="text-xs text-slate-600">{{ v.description }}</p>
+            </div>
+          }
+
+          <div class="mt-4 space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span>Tạm tính ({{ itemCount() }} sản phẩm)</span>
+              <b>{{ vnd(totals().subtotal) }}</b>
+            </div>
+            @if (totals().customizationFee > 0) {
+              <div class="flex justify-between">
+                <span>Phí in tên &amp; số thi đấu</span>
+                <b>+{{ vnd(totals().customizationFee) }}</b>
+              </div>
+            }
+            <div class="flex justify-between">
+              <span>Phí vận chuyển</span>
+              <b class="text-blue-700">
+                {{ totals().shippingFee === 0 ? 'Miễn phí (0đ)' : vnd(totals().shippingFee) }}
+              </b>
+            </div>
+            @if (totals().voucherDiscount > 0) {
+              <div class="flex justify-between text-red-600">
+                <span>Giảm giá Voucher ({{ voucher()?.code }})</span>
+                <b>-{{ vnd(totals().voucherDiscount) }}</b>
+              </div>
+            }
+            @if (totals().paymentDiscount > 0) {
+              <div class="flex justify-between text-red-600">
+                <span>Giảm khi thanh toán VNPAY</span>
+                <b>-{{ vnd(totals().paymentDiscount) }}</b>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="bg-blue-50 p-5">
+          <div class="flex items-end justify-between">
+            <span class="font-extrabold text-blue-900">TỔNG THANH TOÁN</span>
+            <span class="text-3xl font-extrabold text-blue-700">{{ vnd(totals().total) }}</span>
+          </div>
+          @if (totals().saved > 0) {
+            <p class="mt-1 text-right text-xs text-blue-700">Tiết kiệm được {{ vnd(totals().saved) }}</p>
+          }
+        </div>
+
+        <div class="p-5">
+          <label class="flex items-start gap-2 text-xs text-slate-600">
+            <input type="checkbox" class="mt-0.5" [(ngModel)]="agreed" />
+            <span>Tôi đã đọc và đồng ý với Điều khoản mua hàng &amp; Chính sách đổi trả 30 ngày của SportZone.</span>
+          </label>
+          @if (tried() && errors().agreed) {
+            <p class="mt-1 text-xs text-red-600">{{ errors().agreed }}</p>
+          }
+
+          <button type="button" (click)="placeOrder()"
+            class="mt-4 w-full rounded-xl bg-blue-900 py-4 font-extrabold text-white hover:bg-blue-800">
+            XÁC NHẬN &amp; ĐẶT HÀNG
+          </button>
+
+          @if (tried() && !isValid()) {
+            <p class="mt-2 text-center text-xs text-red-600">
+              Vui lòng điền đủ thông tin bắt buộc ở trên.
+            </p>
+          }
+        </div>
+      </aside>
+    </div>
+  }
+</div>

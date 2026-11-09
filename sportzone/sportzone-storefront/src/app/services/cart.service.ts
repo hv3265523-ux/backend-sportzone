@@ -9,11 +9,15 @@ export interface CartItem {
   size?: string;
 }
 
-// Giỏ hàng dùng chung cho mọi trang
 @Injectable({ providedIn: 'root' })
 export class CartService {
   items = signal<CartItem[]>([]);
   count = computed(() => this.items().reduce((sum, i) => sum + i.quantity, 0));
+
+  // MỚI: tổng tiền giỏ hàng
+  total = computed(() =>
+    this.items().reduce((sum, i) => sum + i.price * i.quantity, 0),
+  );
 
   add(item: CartItem) {
     this.items.update((list) => {
@@ -26,5 +30,10 @@ export class CartService {
       return copy;
     });
     console.log('Giỏ hàng:', this.items());
+  }
+
+  // MỚI: xóa hết giỏ (dùng sau khi đặt hàng)
+  clear() {
+    this.items.set([]);
   }
 }

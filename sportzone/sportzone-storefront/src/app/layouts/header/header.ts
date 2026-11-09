@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,17 @@ import { RouterLink } from '@angular/router';
   styleUrl: './header.css',
 })
 export class Header {
+  private cart = inject(CartService);
+
   wishCount = 4;
-  cartCount = 3;
-  cartTotal = '1.250.000đ';
+
+  get cartCount(): number {
+    return this.cart.count();
+  }
+
+  get cartTotal(): string {
+    return this.cart.total().toLocaleString('vi-VN') + 'đ';
+  }
 
   menu = [
     'Tất cả sản phẩm',
