@@ -35,7 +35,7 @@
 
     <div class="ml-auto flex items-center gap-5">
       <!-- Theo dõi đơn -->
-      <a href="#" class="flex flex-col items-center text-xs leading-tight text-gray-700 hover:text-blue-900">
+      <a routerLink="/don-hang" class="flex flex-col items-center text-xs leading-tight text-gray-700 hover:text-blue-900">
         <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
         <span class="mt-1">Theo dõi đơn</span>
       </a>
@@ -48,7 +48,7 @@
       </a>
 
       <!-- Giỏ hàng -->
-      <a href="#" class="relative flex items-center gap-2 rounded-xl bg-indigo-50 px-3 py-2 hover:bg-indigo-100">
+      <a routerLink="/gio-hang" class="relative flex items-center gap-2 rounded-xl bg-indigo-50 px-3 py-2 hover:bg-indigo-100">
         <svg class="h-5 w-5 text-blue-900" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span class="absolute -left-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-blue-900 text-[10px] font-bold text-white">{{ cartCount }}</span>
         <span class="leading-tight">
@@ -74,8 +74,8 @@
 
   <!-- Menu danh mục -->
   <nav class="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-4 pb-3 pt-1 text-sm text-gray-700">
-    @for (m of menu; track m) {
-      <a href="#" class="hover:text-blue-900">{{ m }}</a>
+    @for (m of menu; track m.label) {
+      <a [routerLink]="m.link" class="hover:text-blue-900">{{ m.label }}</a>
     }
     <a href="#" class="flex items-center gap-1 font-bold text-amber-800">
       <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>

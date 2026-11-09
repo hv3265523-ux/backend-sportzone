@@ -22,13 +22,14 @@ export class Header {
     return this.cart.total().toLocaleString('vi-VN') + 'đ';
   }
 
+  // Mỗi mục có kèm đường dẫn. Sau này có trang lọc theo danh mục thì đổi link.
   menu = [
-    'Tất cả sản phẩm',
-    'Bóng đá',
-    'Bóng rổ',
-    'Chạy bộ',
-    'Quần áo thể thao',
-    'Giày dép',
-    'Phụ kiện tập luyện',
+    { label: 'Tất cả sản phẩm', link: '/san-pham' },
+    { label: 'Bóng đá', link: '/san-pham' },
+    { label: 'Bóng rổ', link: '/san-pham' },
+    { label: 'Chạy bộ', link: '/san-pham' },
+    { label: 'Quần áo thể thao', link: '/san-pham' },
+    { label: 'Giày dép', link: '/san-pham' },
+    { label: 'Phụ kiện tập luyện', link: '/san-pham' },
   ];
 }
