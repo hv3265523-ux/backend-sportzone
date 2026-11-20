@@ -1,0 +1,116 @@
+<div class="wrap">
+  <!-- Breadcrumb -->
+  <div class="crumb">
+    <span><a routerLink="/">Trang chủ</a> › <b>{{ info.title }}</b></span>
+    <span class="crumb-right">AUTHENTIC KITS &amp; GEAR &nbsp; | &nbsp; GIAO HỎA TỐC 2H</span>
+  </div>
+
+  <!-- Banner -->
+  <div class="hero">
+    <span class="pill">MÙA GIẢI 2024/25</span>
+    <span class="pill pill-light">CHÍNH HÃNG 100%</span>
+    <h1>{{ info.hero1 }}<br />{{ info.hero2 }}</h1>
+    <p>{{ info.heroDesc }}</p>
+    <button class="hero-btn">Khám phá ngay →</button>
+  </div>
+
+  <!-- Tiêu đề + nút danh mục -->
+  <div class="list-head">
+    <h2>{{ info.listTitle }}</h2>
+    <p>{{ info.listDesc }}</p>
+    <div class="chips">
+      @for (c of info.chips; track c; let i = $index) {
+        <button class="chip" [class.active]="activeChip === i" (click)="activeChip = i">{{ c }}</button>
+      }
+    </div>
+  </div>
+
+  <div class="layout">
+    <!-- Bộ lọc -->
+    <aside class="filter">
+      <div class="filter-top">
+        <b>Bộ Lọc Chi Tiết</b>
+        <a (click)="reset()">Thiết lập lại</a>
+      </div>
+
+      <h4>Thương hiệu</h4>
+      @for (b of brands; track b.name) {
+        <label class="check">
+          <input type="checkbox" [checked]="selectedBrands.includes(b.name)" (change)="toggleBrand(b.name)" />
+          {{ b.name }} <span class="count">{{ b.count }}</span>
+        </label>
+      }
+
+      <h4>Khoảng giá (VNĐ)</h4>
+      <div class="price-grid">
+        @for (r of priceRanges; track r.label) {
+          <button [class.on]="priceRange === r" (click)="setPrice(r)">{{ r.label }}</button>
+        }
+      </div>
+
+      <h4>Size áo</h4>
+      <div class="size-row">
+        @for (s of sizesAo; track s) {
+          <button [class.on]="selectedSizes.includes(s)" (click)="toggleSize(s)">{{ s }}</button>
+        }
+      </div>
+
+      <h4>Size giày</h4>
+      <div class="size-row">
+        @for (s of sizesGiay; track s) {
+          <button [class.on]="selectedSizes.includes(s)" (click)="toggleSize(s)">{{ s }}</button>
+        }
+      </div>
+
+      <button class="apply" (click)="page = 1">Áp dụng bộ lọc</button>
+      <button class="clear" (click)="reset()">Xóa bộ lọc</button>
+    </aside>
+
+    <!-- Sản phẩm -->
+    <main>
+      <div class="toolbar">
+        <span>Hiển thị <b>{{ filtered.length }}</b> sản phẩm {{ info.title.toLowerCase() }}</span>
+        <span>
+          Sắp xếp theo:
+          <select (change)="setSort($any($event.target).value)">
+            <option value="">Bán chạy nhất</option>
+            <option value="asc">Giá thấp đến cao</option>
+            <option value="desc">Giá cao đến thấp</option>
+          </select>
+        </span>
+      </div>
+
+      <div class="grid">
+        @for (p of shown; track p.name) {
+          <div class="card">
+            <span class="badge">-{{ percent(p) }}%</span>
+            <span class="brand">{{ p.brand }}</span>
+            <span class="heart">♡</span>
+            <div class="img"><span class="tag">{{ p.tag }}</span></div>
+            <div class="rate"><b>★ {{ p.rating }}</b> ({{ p.reviews }} đánh giá)</div>
+            <h3>{{ p.name }}</h3>
+            <div class="sizes">Size: {{ p.sizes }}</div>
+            <div class="price">{{ p.price | number }}đ <small>{{ p.old | number }}đ</small></div>
+            <button class="add" (click)="addToCart(p)">Thêm vào giỏ</button>
+          </div>
+        }
+      </div>
+
+      @if (filtered.length === 0) {
+        <p class="empty">Không có sản phẩm phù hợp.</p>
+      }
+
+      <!-- Phân trang -->
+      <div class="paging">
+        <span>Hiển thị {{ from }} - {{ to }} trong tổng số {{ filtered.length }} sản phẩm</span>
+        <div class="pages">
+          <button (click)="goPage(page - 1)">‹</button>
+          @for (n of pages; track n) {
+            <button [class.on]="n === page" (click)="goPage(n)">{{ n }}</button>
+          }
+          <button (click)="goPage(page + 1)">›</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

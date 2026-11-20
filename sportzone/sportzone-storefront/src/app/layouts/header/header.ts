@@ -25,9 +25,9 @@ export class Header {
   // Mỗi mục có kèm đường dẫn. Sau này có trang lọc theo danh mục thì đổi link.
   menu = [
     { label: 'Tất cả sản phẩm', link: '/san-pham' },
-    { label: 'Bóng đá', link: '/san-pham' },
-    { label: 'Bóng rổ', link: '/san-pham' },
-    { label: 'Chạy bộ', link: '/san-pham' },
+    { label: 'Bóng đá', link: '/bong-da' },
+    { label: 'Bóng rổ', link: '/bong-ro' },
+    { label: 'Chạy bộ', link: '/chay-bo' },
     { label: 'Quần áo thể thao', link: '/san-pham' },
     { label: 'Giày dép', link: '/san-pham' },
     { label: 'Phụ kiện tập luyện', link: '/san-pham' },
